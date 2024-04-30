@@ -56,7 +56,7 @@ async function run() {
             console.log(result)
             res.send(result)
         })
-
+        //access logged in user crafts
         app.get('/myItems/:email', async (req, res) => {
             const email = req.params.email;
             console.log(email)
