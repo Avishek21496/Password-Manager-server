@@ -64,7 +64,7 @@ async function run() {
             const result = await itemCollection.find(query).toArray()
             res.send(result)
         })
-
+        //added filter items
         app.get('/myItems/filter/:email/:fil', async (req, res) => {
             const email = req.params.email;
             const fil = req.params.fil;
