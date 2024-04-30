@@ -41,6 +41,7 @@ async function run() {
             res.send(result)
         });
 
+        //get all the data
         app.get('/items', async (req, res) => {
             const cursor = itemCollection.find();
             const result = await cursor.toArray();
