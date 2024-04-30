@@ -30,6 +30,7 @@ async function run() {
 
         //created a collection named 'items'
         const itemCollection = client.db('itemsDB').collection('items');
+        //created a collection named 'categories' under same database
         const categoriesCollection = client.db('itemsDB').collection('categories');
 
         app.post('/items', async (req, res) => {
