@@ -48,7 +48,7 @@ async function run() {
             res.send(result)
         })
 
-
+        // access data by user id
         app.get('/items/:id', async (req, res) => {
             const ida = req.params.id;
             const query = { _id: new ObjectId(ida) }
