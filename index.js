@@ -33,6 +33,7 @@ async function run() {
         //created a collection named 'categories' under same database
         const categoriesCollection = client.db('itemsDB').collection('categories');
 
+        //added post method for inserting data
         app.post('/items', async (req, res) => {
             const addedItem = req.body;
             // console.log(addedItem);
