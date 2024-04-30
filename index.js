@@ -9,8 +9,7 @@ const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 app.use(cors());
 app.use(express.json());
 
-//ashiqur12315
-//6UGVgd5DWCkH5gYm
+
 
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster1.hauko36.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1`;
@@ -29,6 +28,7 @@ async function run() {
         // Connect the client to the server	(optional starting in v4.7)
         // await client.connect();
 
+        //created a collection named 'items'
         const itemCollection = client.db('itemsDB').collection('items');
         const categoriesCollection = client.db('itemsDB').collection('categories');
 
