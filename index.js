@@ -9,10 +9,14 @@ const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 app.use(cors());
 app.use(express.json());
 
+// Avishek Roy JbDmmHI7BojprzkP
 
 
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster1.hauko36.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1`;
+
+// const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster1.hauko36.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1`;
+// const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.dop0c.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.dop0c.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -30,6 +34,7 @@ async function run() {
 
         //created a collection named 'items'
         const itemCollection = client.db('itemsDB').collection('items');
+        const passwordCollection = client.db('itemsDB').collection('passwords');
         //created a collection named 'categories' under same database
         const categoriesCollection = client.db('itemsDB').collection('categories');
 
@@ -46,6 +51,24 @@ async function run() {
             const cursor = itemCollection.find();
             const result = await cursor.toArray();
             res.send(result)
+        })
+
+        app.post('/save', async (req, res) => {
+            const addedItem = req.body;
+            console.log('----------------------HITTED--------------------');
+            const result = await passwordCollection.insertOne(addedItem);
+            res.send(result)
+        })
+        app.get('/save/:email', async (req, res) => {
+            const email = req.params.email;
+            console.log(email)
+            const query = { user_email: email }
+            const result = await passwordCollection.find(query).toArray()
+            res.send(result)
+        })
+
+        app.get('test', (req, res)=>{
+            console.log('test hit')
         })
 
         // access data by user id
@@ -131,9 +154,9 @@ run().catch(console.dir);
 
 
 app.get('/', (req, res) => {
-    res.send('Art and craft server is running')
+    res.send('Art and craft server is running avishek')
 })
 
 app.listen(port, () => {
-    console.log(`art craft server running on: ${port}`)
+    console.log(`art craft server running ona: ${port}`)
 })
